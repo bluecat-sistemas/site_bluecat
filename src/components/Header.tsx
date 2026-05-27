@@ -1,102 +1,135 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
 import { cn } from "@/lib/utils";
 
 const WHATSAPP_LINK = "https://wa.me/5562982686619";
 
+const navLinks = [
+  { href: "#inicio", label: "Início" },
+  { href: "#produto", label: "Produto" },
+  { href: "#solucoes", label: "Soluções" },
+  { href: "#metodo", label: "Método" },
+  { href: "#contato", label: "Contato" },
+];
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("inicio");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "#sobre", label: "Sobre" },
-    { href: "#servicos", label: "Serviços" },
-    { href: "#valores", label: "Valores" },
-    { href: "#contato", label: "Contato" },
-  ];
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector(link.href))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target.id) {
+          setActiveSection(visible.target.id);
+        }
+      },
+      { threshold: [0.35, 0.55, 0.75] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/80 backdrop-blur-lg shadow-sm"
-          : "bg-transparent"
+        "fixed left-0 right-0 top-0 z-50 transition-all duration-500",
+        isScrolled ? "py-3" : "py-5",
       )}
     >
-      <div className="container mx-auto px-4">
-        <nav className="flex items-center justify-between h-20">
-          <Logo />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <nav
+          className={cn(
+            "flex h-16 items-center justify-between rounded-xl border px-3 transition-all duration-500 sm:px-5",
+            isScrolled
+              ? "border-slate-200/80 bg-white/88 shadow-[0_16px_45px_rgba(10,31,68,0.10)] backdrop-blur-2xl"
+              : "border-white/55 bg-white/64 backdrop-blur-xl",
+          )}
+        >
+          <a href="#inicio" aria-label="BlueCat Systems" onClick={closeMobileMenu}>
+            <Logo />
+          </a>
 
-          {/* Navegação Desktop */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden items-center gap-7 md:flex">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace("#", "");
 
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "border-b-2 px-1 py-2 text-sm font-semibold transition-colors duration-300",
+                    isActive && "border-blue-700 text-slate-950",
+                    !isActive && "border-transparent text-slate-500 hover:text-slate-950",
+                  )}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
             <Button variant="hero" size="default" asChild>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Fale Conosco
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="h-4 w-4" />
+                Fale conosco
               </a>
             </Button>
           </div>
 
-          {/* Mobile Botão de Menu */}
           <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm md:hidden"
+            onClick={() => setIsMobileMenuOpen((value) => !value)}
+            aria-label="Abrir menu"
+            aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </nav>
 
-        {/* Navegação Mobile */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-border animate-fade-in">
-            <div className="flex flex-col p-4 gap-4">
+          <div className="mt-3 overflow-hidden rounded-xl border border-white/70 bg-white/92 p-3 shadow-2xl shadow-slate-900/15 backdrop-blur-2xl md:hidden">
+            <div className="grid gap-2">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-lg px-4 py-3 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950"
+                  onClick={closeMobileMenu}
                 >
                   {link.label}
                 </a>
               ))}
 
               <Button variant="hero" size="lg" className="mt-2" asChild>
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Fale Conosco
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-4 w-4" />
+                  Fale conosco
                 </a>
               </Button>
             </div>

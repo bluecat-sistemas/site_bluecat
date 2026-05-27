@@ -1,55 +1,58 @@
-import { Target, Eye, Lightbulb } from "lucide-react";
+import type { CSSProperties } from "react";
+import { Eye, Layers3, Target } from "lucide-react";
 
 const AboutSection = () => {
   const items = [
     {
       icon: Target,
-      title: "Nossa Missão",
+      eyebrow: "Missão",
+      title: "Tirar a tecnologia do campo das promessas.",
       description:
-        "Entregar soluções tecnológicas ágeis e eficientes, proporcionando suporte excepcional e resultados mensuráveis para nossos parceiros.",
+        "Projetamos soluções claras, rápidas e bem acompanhadas para empresas que precisam de resultado sem perder identidade.",
     },
     {
       icon: Eye,
-      title: "Nossa Visão",
+      eyebrow: "Visão",
+      title: "Ser a parceira digital que o cliente sente por perto.",
       description:
-        "Ser referência nacional em tecnologia e suporte, reconhecidos pela excelência, inovação e compromisso com o sucesso de nossos clientes.",
+        "Unimos produto, suporte e decisão técnica para criar uma presença moderna, confiável e pronta para escalar.",
     },
     {
-      icon: Lightbulb,
-      title: "Nosso Propósito",
+      icon: Layers3,
+      eyebrow: "Propósito",
+      title: "Construir ferramentas que parecem simples porque foram bem pensadas.",
       description:
-        "Acreditamos que toda empresa merece tecnologia. Nosso papel é simplificar o complexo e entregar soluções que funcionam.",
+        "Da primeira conversa ao painel final, cuidamos da experiência, da performance e do jeito como a marca se apresenta.",
     },
   ];
 
   return (
-    <section id="sobre" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Quem é a <span className="hero-gradient-text">Bluecat Systems</span>
+    <section id="produto" className="snap-section section-surface">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:py-28">
+        <div>
+          <span className="section-kicker">Produto BlueCat</span>
+          <h2 className="section-title mt-4">
+            Tecnologia com clareza, consistência e suporte de verdade.
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Uma empresa focada em ajudar empresas a alcançarem seus objetivos
-            através de soluções tecnológicas e suporte dedicado.
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            A BlueCat combina estratégia, desenvolvimento e acompanhamento
+            técnico para entregar soluções digitais que funcionam na rotina da
+            empresa e comunicam confiança desde o primeiro contato.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="experience-stack">
           {items.map((item, index) => (
-            <div
-              key={item.title}
-              className="bg-card rounded-2xl p-8 card-elevated animate-fade-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="w-14 h-14 rounded-xl hero-gradient flex items-center justify-center mb-6">
-                <item.icon className="w-7 h-7 text-primary-foreground" />
+            <article key={item.title} className="experience-card" style={{ "--i": index } as CSSProperties}>
+              <div className="experience-icon">
+                <item.icon className="h-5 w-5" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+              <div>
+                <span>{item.eyebrow}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </article>
           ))}
         </div>
       </div>

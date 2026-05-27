@@ -12,7 +12,7 @@ const Logo = ({ className, iconOnly = false }: LogoProps) => {
       <img 
         src={logoBluecat} 
         alt="Bluecat Logo" 
-        className="h-12 w-auto"
+        className={cn(iconOnly ? "h-11 w-11 object-contain object-left" : "h-14 w-auto sm:h-16")}
       />
     </div>
   );

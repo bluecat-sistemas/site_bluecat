@@ -1,85 +1,68 @@
-import { Heart, Award, Users2, Rocket } from "lucide-react";
+import type { CSSProperties } from "react";
+import { Award, HeartHandshake, Rocket, Sparkles } from "lucide-react";
 
 const ValuesSection = () => {
   const values = [
     {
-      icon: Heart,
-      title: "Compromisso",
-      description: "Tratamos cada projeto com dedicação total, como se fosse nosso próprio negócio.",
+      icon: HeartHandshake,
+      title: "Parceria real",
+      description: "A BlueCat trabalha perto, pergunta melhor e sustenta a evolução depois da entrega.",
     },
     {
       icon: Award,
-      title: "Excelência",
-      description: "Buscamos a perfeição em cada entrega, superando expectativas constantemente.",
-    },
-    {
-      icon: Users2,
-      title: "Parceria",
-      description: "Construímos relacionamentos duradouros baseados em confiança e transparência.",
+      title: "Acabamento",
+      description: "Design, texto, comportamento e performance recebem a mesma atenção.",
     },
     {
       icon: Rocket,
-      title: "Inovação",
-      description: "Estamos sempre à frente, trazendo as melhores e mais modernas soluções do mercado.",
+      title: "Evolução contínua",
+      description: "Cada produto nasce com espaço para crescer, medir e melhorar.",
     },
   ];
 
   return (
-    <section id="valores" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Valores que nos <span className="hero-gradient-text">definem</span>
-            </h2>
-            <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-              Nossos valores são a base de tudo o que fazemos. Eles guiam nossas
-              decisões, moldam nossa cultura e definem como nos relacionamos com
-              nossos clientes e parceiros.
-            </p>
+    <section id="metodo" className="snap-section section-surface">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_0.95fr] lg:py-28">
+        <div>
+          <span className="section-kicker">Método</span>
+          <h2 className="section-title mt-4">Um processo direto para transformar necessidade em solução.</h2>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            Do diagnóstico ao suporte, cada etapa é pensada para reduzir ruído,
+            dar previsibilidade ao projeto e entregar tecnologia alinhada ao
+            negócio.
+          </p>
 
-            <div className="space-y-6">
-              {values.map((value, index) => (
-                <div
-                  key={value.title}
-                  className="flex gap-4 items-start animate-fade-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="w-10 h-10 rounded-lg hero-gradient flex items-center justify-center flex-shrink-0">
-                    <value.icon className="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm">
-                      {value.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {values.map((value, index) => (
+              <article key={value.title} className="value-card" style={{ "--i": index } as CSSProperties}>
+                <value.icon className="h-5 w-5" />
+                <h3>{value.title}</h3>
+                <p>{value.description}</p>
+              </article>
+            ))}
           </div>
+        </div>
 
-          {/* Visual element */}
-          <div className="relative">
-            <div className="aspect-square rounded-3xl hero-gradient p-1">
-              <div className="w-full h-full rounded-3xl bg-background flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="text-6xl md:text-7xl font-bold hero-gradient-text mb-4">
-                    100%
-                  </div>
-                  <p className="text-xl text-muted-foreground">
-                    Soluções
-                    <br />
-                    <span className="font-semibold text-foreground">
-                      Personalizadas
-                    </span>
-                  </p>
-                </div>
+        <div className="process-board">
+          {[
+            ["01", "Diagnóstico", "entender contexto, público e meta"],
+            ["02", "Design", "interface, identidade e experiência"],
+            ["03", "Construção", "código, performance e responsividade"],
+            ["04", "Suporte", "evolução contínua após o lançamento"],
+          ].map(([number, title, text], index) => (
+            <div key={number} className="process-step" style={{ "--i": index } as CSSProperties}>
+              <span>{number}</span>
+              <div>
+                <strong>{title}</strong>
+                <p>{text}</p>
               </div>
             </div>
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-accent/10 rounded-full blur-2xl" />
+          ))}
+
+          <div className="process-core">
+            <Sparkles className="h-8 w-8" />
+            <strong>BlueCat</strong>
+            <span>produto, suporte e tecnologia</span>
           </div>
         </div>
       </div>

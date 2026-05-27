@@ -8,9 +8,9 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="site-shell min-h-screen">
       <Header />
-      <main>
+      <main className="relative">
         <HeroSection />
         <AboutSection />
         <ServicesSection />
