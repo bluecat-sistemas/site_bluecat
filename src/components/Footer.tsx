@@ -55,6 +55,7 @@ const Footer = () => {
                 <ul className="mt-4 space-y-3 text-white/58">
                   <li><a href="#produto" className="hover:text-white">Produto</a></li>
                   <li><a href="#solucoes" className="hover:text-white">Soluções</a></li>
+                  <li><a href="#planos" className="hover:text-white">Planos</a></li>
                   <li><a href="#metodo" className="hover:text-white">Método</a></li>
                   <li><a href="#contato" className="hover:text-white">Contato</a></li>
                 </ul>

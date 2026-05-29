@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#inicio", label: "Início" },
   { href: "#produto", label: "Produto" },
   { href: "#solucoes", label: "Soluções" },
+  { href: "#planos", label: "Planos" },
   { href: "#metodo", label: "Método" },
   { href: "#contato", label: "Contato" },
 ];
@@ -26,6 +27,21 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const syncActiveSectionFromHash = () => {
+      const sectionId = window.location.hash.slice(1);
+
+      if (sectionId) {
+        setActiveSection(sectionId);
+      }
+    };
+
+    syncActiveSectionFromHash();
+    window.addEventListener("hashchange", syncActiveSectionFromHash);
+
+    return () => window.removeEventListener("hashchange", syncActiveSectionFromHash);
   }, []);
 
   useEffect(() => {
@@ -73,7 +89,7 @@ const Header = () => {
             <Logo />
           </a>
 
-          <div className="hidden items-center gap-7 md:flex">
+          <div className="hidden items-center gap-5 md:flex lg:gap-7">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
 
