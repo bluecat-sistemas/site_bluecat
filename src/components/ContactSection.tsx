@@ -11,6 +11,8 @@ const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_CONTACT_WEBHOOK_URL;
 const CONTACT_FORM_ENDPOINT =
   import.meta.env.VITE_CONTACT_FORM_ENDPOINT || `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
+const PLAN_OPTIONS = ["Básico", "Avançado", "Premium", "Enterprise"];
+
 const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -46,6 +48,7 @@ const ContactSection = () => {
       name: String(formData.get("name") || "").trim(),
       email: String(formData.get("email") || "").trim(),
       subject: String(formData.get("subject") || "").trim(),
+      plan: String(formData.get("plan") || "").trim(),
       message: String(formData.get("message") || "").trim(),
       targetEmail: CONTACT_EMAIL,
       source: "bluecat-site-contact-form",
@@ -53,7 +56,7 @@ const ContactSection = () => {
       submittedAt: new Date().toISOString(),
     };
 
-    if (!payload.name || !payload.email || !payload.subject || !payload.message) {
+    if (!payload.name || !payload.email || !payload.subject || !payload.plan || !payload.message) {
       toast.error("Preencha todos os campos antes de enviar.");
       return;
     }
@@ -69,10 +72,11 @@ const ContactSection = () => {
             Nome: payload.name,
             Email: payload.email,
             Assunto: payload.subject,
+            Plano: payload.plan,
             Mensagem: payload.message,
             Página: payload.pageUrl,
             Data: payload.submittedAt,
-            _subject: `Novo contato do site: ${payload.subject}`,
+            _subject: `Novo contato do site (${payload.plan}): ${payload.subject}`,
             _template: "table",
             _captcha: "false",
           };
@@ -172,6 +176,25 @@ const ContactSection = () => {
           <label>
             <span>Assunto</span>
             <Input name="subject" placeholder="Como podemos ajudar?" className="h-12" required />
+          </label>
+
+          <label>
+            <span>Plano de interesse</span>
+            <select
+              name="plan"
+              className="h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+              defaultValue=""
+              required
+            >
+              <option value="" disabled>
+                Selecione um plano
+              </option>
+              {PLAN_OPTIONS.map((plan) => (
+                <option key={plan} value={plan}>
+                  {plan}
+                </option>
+              ))}
+            </select>
           </label>
 
           <label>

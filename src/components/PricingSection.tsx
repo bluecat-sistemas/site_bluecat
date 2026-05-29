@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const plans = [
   {
     name: "Plano Básico",
-    price: "R$ 199",
+    price: "R$ 199,90",
     period: "/mês",
     tagline: "Ideal para quem está começando",
     features: [
@@ -37,7 +37,7 @@ const plans = [
   },
   {
     name: "Plano Premium",
-    price: "R$ 699",
+    price: "R$ 699,90",
     period: "/mês",
     tagline: "Ideal para empresas que buscam escala e gestão completa",
     features: [
