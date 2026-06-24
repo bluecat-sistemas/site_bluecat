@@ -7,8 +7,8 @@ import erpLogo from "@/assets/erp-logo.png";
 const HeroSection = () => {
   return (
     <section id="inicio" className="snap-section hero-stage pt-28">
-      <div className="mx-auto grid min-h-[calc(100svh-7rem)] max-w-7xl items-center gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:pb-10">
-        <div className="hero-copy relative z-10 max-w-3xl min-w-0">
+      <div className="mx-auto grid min-h-[calc(100svh-7rem)] max-w-7xl items-center gap-10 px-4 pb-16 sm:px-6 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:gap-20 xl:pb-10">
+        <div className="hero-copy relative z-10 max-w-3xl min-w-0 xl:max-w-[36rem]">
           <div className="reveal-chip mb-6 inline-flex items-center gap-2">
             <Sparkles className="h-4 w-4" />
             <span>BlueCat Technology Solutions</span>
@@ -56,7 +56,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative min-h-[500px] lg:min-h-[650px]">
+        <div className="hero-visual relative min-h-[500px] min-w-0 xl:min-h-[650px]">
           <div className="product-orbit" aria-hidden="true">
             <div className="orbit-ring orbit-ring-one" />
             <div className="orbit-ring orbit-ring-two" />
