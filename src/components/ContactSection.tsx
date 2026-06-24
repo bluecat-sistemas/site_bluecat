@@ -98,8 +98,7 @@ const ContactSection = () => {
       toast.success("Mensagem enviada para a BlueCat.", {
         description: "Recebemos seu contato e vamos responder em breve.",
       });
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error("Não foi possível enviar a mensagem.", {
         description: "Tente novamente ou chame a BlueCat pelo WhatsApp.",
       });
