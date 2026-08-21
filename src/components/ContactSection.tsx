@@ -27,8 +27,8 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: "WhatsApp",
-      value: "(62) 98268-6619",
-      href: "https://wa.me/5562982686619",
+      value: "(62) 98230-0495",
+      href: "https://wa.me/5562982300495",
       external: true,
     },
     {
@@ -147,7 +147,7 @@ const ContactSection = () => {
           </div>
 
           <a
-            href="https://wa.me/5562982686619"
+            href="https://wa.me/5562982300495"
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-panel mt-6"

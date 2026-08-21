@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import Logo from "./Logo";
 import { cn } from "@/lib/utils";
 
-const WHATSAPP_LINK = "https://wa.me/5562982686619";
+const WHATSAPP_LINK = "https://wa.me/5562982300495";
 
 const navLinks = [
   { href: "#inicio", label: "Início" },
