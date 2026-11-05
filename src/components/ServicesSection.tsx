@@ -9,7 +9,6 @@ import {
   Users,
 } from "lucide-react";
 import type { CSSProperties } from "react";
-import proximityLogo from "@/assets/proximy-logo.png";
 import erpLogo from "@/assets/erp-logo.png";
 
 const ServicesSection = () => {
@@ -74,7 +73,7 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
+        <div className="mt-12 max-w-4xl">
           <article className="product-showcase product-showcase-cool">
             <div>
               <span>Produto principal</span>
@@ -98,25 +97,6 @@ const ServicesSection = () => {
                 <span />
                 <span />
               </div>
-            </div>
-          </article>
-
-          <article className="product-showcase product-showcase-warm">
-            <div>
-              <span>Produto em evolução</span>
-              <h3>Proximy</h3>
-              <p>
-                App para localizações comerciais, turismo e descoberta de pontos
-                relevantes com foco em movimento, mapa e comércio local.
-              </p>
-            </div>
-
-            <div className="product-visual proximity-visual">
-              <img src={proximityLogo} alt="Proximy" />
-              <div className="route-line" />
-              <div className="map-pin pin-one" />
-              <div className="map-pin pin-two" />
-              <div className="map-pin pin-three" />
             </div>
           </article>
         </div>

@@ -11,7 +11,7 @@ const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_CONTACT_WEBHOOK_URL;
 const CONTACT_FORM_ENDPOINT =
   import.meta.env.VITE_CONTACT_FORM_ENDPOINT || `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
-const PLAN_OPTIONS = ["Básico", "Avançado", "Premium", "Enterprise"];
+const PLAN_OPTIONS = ["ERP BlueSys", "Sistemas sob medida", "Site institucional", "Consultoria e suporte", "Outro"];
 
 const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -178,7 +178,7 @@ const ContactSection = () => {
           </label>
 
           <label>
-            <span>Plano de interesse</span>
+            <span>Solução de interesse</span>
             <select
               name="plan"
               className="h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
@@ -186,7 +186,7 @@ const ContactSection = () => {
               required
             >
               <option value="" disabled>
-                Selecione um plano
+                Selecione uma solução
               </option>
               {PLAN_OPTIONS.map((plan) => (
                 <option key={plan} value={plan}>

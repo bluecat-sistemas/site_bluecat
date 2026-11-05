@@ -1,7 +1,6 @@
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
 import { Button } from "./ui/button";
 import logoBluecat from "@/assets/logo-bluecat.png";
-import proximityLogo from "@/assets/proximy-logo.png";
 import erpLogo from "@/assets/erp-logo.png";
 
 const HeroSection = () => {
@@ -31,7 +30,7 @@ const HeroSection = () => {
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Button variant="hero" size="xl" className="group w-full sm:w-auto" asChild>
-              <a href="#produto">
+              <a href="#solucoes">
                 Conhecer soluções
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
@@ -112,13 +111,6 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="floating-product floating-product-right">
-            <img src={proximityLogo} alt="Proximy" />
-            <div>
-              <strong>Proximy</strong>
-              <span>Descoberta local</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

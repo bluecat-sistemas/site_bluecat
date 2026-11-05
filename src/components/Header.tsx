@@ -10,7 +10,8 @@ const navLinks = [
   { href: "#inicio", label: "Início" },
   { href: "#produto", label: "Produto" },
   { href: "#solucoes", label: "Soluções" },
-  { href: "#planos", label: "Planos" },
+  { href: "#software-sob-medida", label: "Sob medida" },
+  { href: "#bluesys", label: "ERP BlueSys" },
   { href: "#metodo", label: "Método" },
   { href: "#contato", label: "Contato" },
 ];
@@ -89,7 +90,7 @@ const Header = () => {
             <Logo />
           </a>
 
-          <div className="hidden items-center gap-5 md:flex lg:gap-7">
+          <div className="hidden items-center gap-5 lg:flex lg:gap-7">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
 
@@ -109,7 +110,7 @@ const Header = () => {
             })}
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             <Button variant="hero" size="default" asChild>
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="h-4 w-4" />
@@ -119,7 +120,7 @@ const Header = () => {
           </div>
 
           <button
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-950 shadow-sm lg:hidden"
             onClick={() => setIsMobileMenuOpen((value) => !value)}
             aria-label="Abrir menu"
             aria-expanded={isMobileMenuOpen}
@@ -129,7 +130,7 @@ const Header = () => {
         </nav>
 
         {isMobileMenuOpen && (
-          <div className="mt-3 overflow-hidden rounded-xl border border-white/70 bg-white/92 p-3 shadow-2xl shadow-slate-900/15 backdrop-blur-2xl md:hidden">
+          <div className="mt-3 overflow-hidden rounded-xl border border-white/70 bg-white/92 p-3 shadow-2xl shadow-slate-900/15 backdrop-blur-2xl lg:hidden">
             <div className="grid gap-2">
               {navLinks.map((link) => (
                 <a

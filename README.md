@@ -1,4 +1,28 @@
-# Welcome to your Lovable project
+# BlueCat
+
+## Executar localmente
+
+Requisitos: Node.js LTS e npm.
+
+No terminal do PowerShell, na pasta do projeto, instale as dependências e inicie o servidor:
+
+```powershell
+npm.cmd ci
+npm.cmd run dev
+```
+
+Abra <http://localhost:8080> no navegador. O Vite atualiza a página automaticamente quando os arquivos são alterados.
+
+O arquivo `.env` local já contém a configuração deste projeto e não deve ser compartilhado. Para configurar outra máquina, copie `.env.example` para `.env` e preencha as variáveis necessárias. `VITE_N8N_CONTACT_WEBHOOK_URL` é opcional; sem ela, o formulário usa o endpoint FormSubmit configurado no código.
+
+Para gerar a versão de produção localmente e visualizá-la:
+
+```powershell
+npm.cmd run build
+npm.cmd run preview
+```
+
+## Projeto Lovable
 
 ## Project info
 
@@ -60,9 +84,9 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Publicação
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+O GitHub Actions compila e publica o site no GitHub Pages a cada atualização da branch `main`. A saída de produção é gerada em `dist`; o domínio configurado é `www.bluecat.com.br`.
 
 ## Can I connect a custom domain to my Lovable project?
 
